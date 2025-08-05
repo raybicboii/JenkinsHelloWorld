@@ -21,9 +21,11 @@ pipeline {
             }
         }
         stage("Consolidate Results") {
-            input("Do you want to capture results?")
-            junit '**/target/surefire-reports/TEST-*.xml'
-            archive 'target/*.jar'
+            steps {
+                input("Do you want to capture results?")
+                junit '**/target/surefire-reports/TEST-*.xml'
+                archive 'target/*.jar'
+            }
         }
     }
 }
