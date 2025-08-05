@@ -30,8 +30,8 @@ pipeline {
         stage("Parallel Execution") {
             steps {
                 parallel(
-                    a: { sh "mvn clean" }
-                    b: { sh "mvn test" }
+                    a: { sh "mvn clean" },
+                    b: { sh "mvn test" },
                     c: { sh "mvn package" }
                 )
             }
