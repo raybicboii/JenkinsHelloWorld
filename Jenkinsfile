@@ -27,10 +27,19 @@ pipeline {
                 archive 'target/*.jar'
             }
         }
-        stage("Email Build Status") {
+        stage("Parallel Execution") {
             steps {
-                mail body: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult} Check console output at ${env.BUILD_URL} to view the results", subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER}", to: 'rayboogie1224@gmail.com'
+                parallel(
+                    a: { sh "mvn clean" }
+                    b: { sh "mvn test" }
+                    c: { sh "mvn package" }
+                )
             }
         }
+//         stage("Email Build Status") {
+//             steps {
+//                 mail body: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult} Check console output at ${env.BUILD_URL} to view the results", subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER}", to: 'rayboogie1224@gmail.com'
+//             }
+//         }
     }
 }
