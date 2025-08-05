@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Selenium Suite">
+    <test name="Selenium Test">
+        <classes>
+            <class name="com.raymoli.training.JenkinsCalculatorTest"/>
+            <class name="com.raymoli.training.SeleniumTest"/>
+        </classes>
+    </test>
+</suite>
